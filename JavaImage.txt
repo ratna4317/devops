@@ -1,0 +1,137 @@
+java 7 & java 8
+tomcat 7 & tomacat 8
+deployed in container
+check the java app
+network settngs
+
+==========================
+cd docker 
+mkdir downloads
+
+cp /home/../apache*
+            jdk*
+            sample.war
+
+docker run -i -t --name=jdk7 -v /root/docker/downloads:/root/Downloads centos:centos6 /bin/bash
+77  df -h
+    cd /root/Downloads
+    check files are there or not
+    yum update
+    yum install git wget sudo which
+    mkdir tmp
+    cd tmp
+    tar xzvf jdk8
+    mv jdk8 /opt/java
+    cd /opt
+    cd java
+    alternatives --install /usr/bin/java java /opt/java/bin/java 2
+    alternatives --config java
+    java -version
+    alternatives --install /usr/bin/jar jar /opt/java/bin/jar 2   
+    alternatives --install /usr/bin/java javac /opt/java/bin/javac 2
+
+    alternatives --set jar /opt/java/bin/jar
+    alternatives --set javac /opt/java/bin/javac
+
+    javac -version
+    which jar
+    exit
+docker ps -a
+docker commit jdk8 centos6:java8
+
+
+docker run -i -t --name=jdk10 -v /root/docker/downloads:/root/Downloads centos:centos6 /bin/bash    
+77  df -h
+    cd /root/yum Downloads
+    check files are there or not
+    yum update
+    yum install git wget sudo which
+  #  yum install which sudo git tar wget
+    mkdir tmp
+    cd tmp
+    tar xzvf jdk10
+    mv jdk8 /opt/java
+    cd /opt
+    cd java
+    alternatives --install /usr/bin/java java /opt/java/bin/java 2
+    alternatives --config java
+    java -version
+    alternatives --install /usr/bin/jar jar /opt/java/bin/jar 2   
+    alternatives --install /usr/bin/java javac /opt/java/bin/javac 2
+
+    alternatives --set jar /opt/java/bin/jar
+    alternatives --set javac /opt/java/bin/javac
+
+    javac -version
+    which jar
+    exit
+docker ps -a
+docker commit jdk10 centos6:java10
+
+
+
+===================================================
+docker run -it --name=java8tomcat7 -v /home/docker/downloads:/root/downloads -p 8180:8080 cedntos6:java8 /bin/bash
+666 java -verion
+    df -h
+    cd /root/Downloads
+    tar xzvf tomcat apache 7
+    mv apacjhe / /opt/tomcat
+    cd  /opt/tomcat
+    export JAVA_HOME=/opt/java
+    export JAVA_JRE=/opt/java
+    export CATALINA_BASE=/opt/tomcat
+    export CATALINA_HOME=/opt/tomcat
+    export CATALINA_TMPDIR=/opt/tomcat/temp
+
+    cd bin
+    ls -al   check catalina
+    ./startip.sh & 
+
+    ps aux | grep tomcat 
+    yum install curl
+
+   curl http://localhost:8080  retriece tomcat host
+ -- go to another terminal and check routing ports
+ --open browser http://localjopst:8180
+    ifconfig
+  --again in browae ip:8080
+
+exit
+
+docker ps -a
+
+docker commit java7tomcat7 centos6:jdk7tomcat7
+
+docker images
+===============================================
+
+cd docker
+cd downloads
+
+docker tun -it --name=tomcatweb7 -v /home/docker/downloads:/rrot/downloads -p 8180:8080 -e JAVA_HOME=/opt/java -e JRE_HOME=/opt/java centos6:jdk8tomact7 /bin/bash
+ 777 java -version
+       env | grep HOME
+
+     /opt/tomcat/bin/start.up.sh
+     check ifconfig in browaser 
+     cd /root/downloads
+     /opt/tomcat/bin/shutdown.sh
+   cp sample.war /opt/tomcat/webapps
+   ll
+   /opt/tomcat/bin/starup.sh
+   ifconfig :8080/sample
+
+   there is sample directory created and check 
+
+   four containers started and cchange the pot numbers 8180 8280 8380 8480
+ 
+dcoker attach jdk8tomcatweb7
+   ujj   cd /root/downloads
+   cp sample.war  /opt/tomcat/webapps/
+   /opt/tomcat/bin/startup.sh
+
+check browser localhost:8180 
+              172....:8080
+
+
