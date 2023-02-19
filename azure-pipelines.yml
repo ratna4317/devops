@@ -21,7 +21,7 @@ pool:
 resources:
   webhooks:
     - webhook: testwebhook1          ### Webhook alias
-      connection: MyWebhookConnection    ### Incoming webhook service connection
+      connection: GitWebHook    ### Incoming webhook service connection
       filters:
         - path: repositoryName      ### JSON path in the payload
           value: maven-releases     ### Expected value in the path provided
