@@ -9,12 +9,29 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
   # displayName: 'Run a multi-line script'
   displayName: 'This is Second Yaml Script'
+resources:
+  webhooks:
+    - webhook: testwebhook1          ### Webhook alias
+      connection: GitWebHook    ### Incoming webhook service connection
+      filters:
+        - path: repositoryName      ### JSON path in the payload
+          value: maven-releases     ### Expected value in the path provided
+        - path: action
+          value: CREATED
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    ### JSON payload data is available in the form of ${{ parameters.<WebhookAlias>.<JSONPath>}}
+    script: |
+      Write-Host ${{ parameters.testwebhook1.repositoryName}}
+      Write-Host ${{ parameters.testwebhook1.component.group}}
