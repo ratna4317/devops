@@ -20,7 +20,7 @@ pool:
 
 resources:
   webhooks:
-    - webhook: GitWebHook          ### Webhook alias
+    - webhook: testwebhook1          ### Webhook alias
       connection: MyWebhookConnection    ### Incoming webhook service connection
       filters:
         - path: repositoryName      ### JSON path in the payload
@@ -33,5 +33,5 @@ steps:
     targetType: 'inline'
     ### JSON payload data is available in the form of ${{ parameters.<WebhookAlias>.<JSONPath>}}
     script: |
-      Write-Host ${{ parameters.GitWebHook.repositoryName}}
-      Write-Host ${{ parameters.GitWebHook.component.group}}
+      Write-Host ${{ parameters.testwebhook1.repositoryName}}
+      Write-Host ${{ parameters.testwebhook1.component.group}}
