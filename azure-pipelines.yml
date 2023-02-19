@@ -20,7 +20,7 @@ pool:
 
 resources:
   webhooks:
-    - webhook: MyWebhookTrigger          ### Webhook alias
+    - webhook: GitWebHook          ### Webhook alias
       connection: MyWebhookConnection    ### Incoming webhook service connection
       filters:
         - path: repositoryName      ### JSON path in the payload
