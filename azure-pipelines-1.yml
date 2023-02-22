@@ -30,5 +30,5 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Write-Host ${{ convertToJson(parameters.awetesthook.requestType) }}
+      Write-Host ${{ convertToJson(parameters.testwebhook1.requestType) }}
 
