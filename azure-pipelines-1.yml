@@ -24,7 +24,7 @@ resources:
       connection: GitWebHook
       filters:
         - path: requestType
-          value: a
+          value: b
 steps:
 - task: PowerShell@2
   inputs:
