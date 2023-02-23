@@ -25,7 +25,7 @@ resources:
       filters:
         - path: repositoryName      ### JSON path in the payload
           value: maven-releases     ### Expected value in the path provided
-        - path: requestType
+        - path: requestType ##### Saving content
           value: b
 steps:
 - task: PowerShell@2
