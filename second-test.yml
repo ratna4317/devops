@@ -23,8 +23,8 @@ resources:
     - webhook: testwebhook1          ### Webhook alias
       connection: GitWebHook    ### Incoming webhook service connection
       filters:
-        - path: repositoryName      ### JSON path in the payload
-          value: maven-releases     ### Expected value in the path provided
+        # - path: repositoryName      ### JSON path in the payload
+        #   value: maven-releases     ### Expected value in the path provided
         - path: requestType ##### Saving content
           value: b
 steps:
